@@ -1,0 +1,183 @@
+/* GLOBAL COLORS */
+.dark-primary-color    { background: #303F9F; }
+.default-primary-color { background: #1088e5; }
+.light-primary-color   { background: #ffffff; }
+.text-primary-color    { color: #FFFFFF; }
+.accent-color          { background: #FF4081; }
+.primary-text-color    { color: #212121; }
+.secondary-text-color  { color: #757575; }
+.divider-color         { border-color: #BDBDBD; }
+
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #FFFFFF;
+  box-sizing: border-box;
+}
+
+table {
+  align-items: center;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 500px;
+  height: 200px;
+  padding: 20px;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #1088e5;
+}
+/* VIEW 1 main.vue.js */
+.main-app-container {
+  display: flex;
+   height: 100%;
+   width: 100%;
+}
+
+/* VIEW 2 notifications.vue.js */
+.notifications-container {
+  height : 100%;
+  width: 20%;
+  border-radius: 5px;
+  text-align: center;
+}
+.notif-header {
+  font-size: 2em;
+  margin: 10px;
+  color: white;
+}
+
+/* CHAT CONTAINER chatContainer.vue.js */
+.chat-container {
+  width: 100%;  
+  border-radius: 5px;
+}
+
+.chat-container-header {
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 2em;
+}
+
+.chat-input {
+    height: 5%;
+    position: absolute;
+    bottom: 5px;
+    width: 90%;
+    display: flex;
+    margin: 15px;
+    font-size: 1rem;
+}
+
+.chat-input-box {
+  padding: 20px;
+    background: #d3d3d3;
+    color: black;
+    text-align: center;
+    font-size: 2em;
+}
+
+
+.chat-send-button-primary {
+  outline: none;
+   border: none; 
+   cursor: pointer;
+    width: 115px; 
+    height: 100%; 
+    margin: 0px auto;
+     box-sizing: border-box;
+     background: black;
+}
+
+.activities-btn {
+  padding: 10px;
+  width: 100px;
+  background: black;
+  outline: none;
+  border: none;
+  float: right;
+}
+
+.ownerName {
+  color: black;
+  font-size: 1.5em;
+}
+
+.messages {
+  overflow-y: auto;
+  max-height: 80%;
+}
+
+.user-bubble {
+  margin: 2%;
+  text-align: right;
+}
+
+.bot-bubble {
+  margin: 10px;
+  text-align: left;
+}
+
+.bubble-message {
+  border-radius: .4em;
+    min-height: 20px;
+    min-width: 10%;
+    max-width: 60%;
+    padding: 5px;
+    font-size: 1.75rem;
+    display: inline-block;
+}
+.user-bubble .bubble-message {
+  background: #1e77bc;
+}
+
+.bot-bubble .bubble-message {
+  background: #a4a4a4;
+}
+
+
+.time-stamp-message {
+  color: rgb(7, 20, 44)
+}
+
+/* Time off bubble styles */
+
+.time-off-input-container {
+  color:white;
+  width: 500px;
+}
+.time-off-input-container .time-off-label {
+  font-weight: 500;
+  color: #061d2f;
+  font-size: 1.75rem;
+  text-align: center;
+}
+.time-off-input-container .time-off-radio-group {
+  padding: 15px;
+  align-items: center;
+}
+.time-off-input-container .time-off-input {
+  margin-top: 15px;
+  width: 50%;
+  background: #1e77bc;
+  text-align: center;
+}
+.time-off-input-container .time-off-button {
+  padding: 12px;
+    margin: 10px;
+    color: white;
+    border-radius: 10px;
+    background: black;
+    outline: none;
+    border: none;
+}
+
+.time-off-input-container .time-off-button:focus {
+  outline: none;
+  border: none;
+}

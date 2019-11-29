@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://static.freshdev.io/fdk/2.0/assets/freshdesk.css">
+  <script src="https://static.freshdev.io/fdk/2.0/assets/fresh_client.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+
+<body>
+  <div class="container">
+    <form>
+      <label> Select the required products </label>
+      <div id="freshservice">
+        <input type="checkbox" id='freshservice-enable' onclick='enableParams("freshservice")'> Freshservice
+        <div>
+          <input type="text" id="freshservice-domain" placeholder='enter freshservice domain' hidden>
+          <input type="text" id="freshservice-key" placeholder='enter freshservice API Key' hidden>
+        </div>
+      </div>
+      <div id="freshsales">
+        <input type="checkbox" id='freshsales-enable' onclick='enableParams("freshsales")'> Freshsales
+        <div>
+          <input type="text" id="freshsales-domain" placeholder='enter freshsales domain' hidden>
+          <input type="text" id="freshsales-key" placeholder='enter freshsales API Key' hidden>
+        </div>
+      </div>
+      <div id="freshdesk">
+        <input type="checkbox" id='freshdesk-enable' onclick='enableParams("freshdesk")'> Freshdesk
+        <div>
+          <input type="text" id="freshdesk-domain" placeholder='enter freshdesk domain' hidden>
+          <input type="text" id="freshdesk-key" placeholder='enter freshdesk API Key' hidden>
+        </div>
+      </div>
+      <div id="freshteam">
+        <input type="checkbox" id='freshteam-enable' onclick='enableParams("freshteam")'> Freshteam
+        <div>
+          <input type="text" id="freshteam-domain" placeholder='enter freshteam domain' hidden>
+          <input type="text" id="freshteam-key" placeholder='enter freshteam API Key' hidden>
+        </div>
+      </div>
+      <div id="calendar">
+        <input type="checkbox" id='calendar-enable' onclick='enablecalendar()'> calendar
+        <div>
+          <input type="text" id="calendar-key" placeholder='enter calendar API key' hidden>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+<script>
+  function enableParams(product) {
+    var checkBox = document.getElementById(`${product}-enable`);
+    var domain = document.getElementById(`${product}-domain`);
+    var key = document.getElementById(`${product}-key`);
+    if (checkBox.checked == true) {
+      key.style.display = 'block';
+      domain.style.display = "block";
+    }
+    else {
+      domain.style.display = 'none';
+      key.style.display = "none";
+    }
+  }
+  function enablecalendar(){
+    var checkBox = document.getElementById(`calendar-enable`);
+    var key = document.getElementById(`calendar-key`);
+    if (checkBox.checked == true) {
+      key.style.display = 'block';
+    }
+    else {
+      key.style.display = "none";
+    }
+  }
+  function getConfigs(configs) {
+          var { product_params } = configs;
+          console.log('getconfigs', product_params);
+          for (var product of Object.keys(product_params)){
+            console.log('product', product, product_params[product])
+            if(product == 'calendar'){
+              $("#calendar-enable").prop("checked", true);
+              $('#calendar-key').val(product_params[product].key);
+              var key = document.getElementById(`calendar-key`);
+              key.style.display="block";
+            }
+            else{
+              $(`#${product}-enable`).prop("checked", true);
+              $(`#${product}-domain`).val(product_params[product].domain);
+              $(`#${product}-key`).val(product_params[product].key);
+              var domain = document.getElementById(`${product}-domain`);
+              var key = document.getElementById(`${product}-key`);
+              domain.style.display="block";
+              key.style.display="block";
+            }
+          }
+        }
+        function postConfigs() {
+              products = ['freshdesk', 'freshsales', 'freshservice', 'freshteam']
+              productValues = {}
+              products.forEach(product => {
+                const checkBox = document.getElementById(`${product}-enable`);
+                if (checkBox.checked == true) {
+                  const domain = $(`#${product}-domain`).val();
+                  const key = $(`#${product}-key`).val();
+                  productValues[product] = {
+                    key: key,
+                    domain: domain
+                    };
+                }
+              });
+              const calendarBox = document.getElementById(`calendar-enable`);
+              if(calendarBox.checked == true){
+                const key = $(`#calendar-key`).val();
+                  productValues['calendar'] = {
+                    key: key
+                  };
+              }
+                let configs = {
+                  "product_params": productValues
+              }
+              return configs;
+        }
+</script>
+</head>
+
+</html>
